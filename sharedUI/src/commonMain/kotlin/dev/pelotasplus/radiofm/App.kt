@@ -14,7 +14,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dev.pelotasplus.radiofm.data.repository.RadioRepository
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.koinInject
 
 import radiofm.sharedui.generated.resources.Res
 import radiofm.sharedui.generated.resources.compose_multiplatform
@@ -23,6 +25,10 @@ import radiofm.sharedui.generated.resources.compose_multiplatform
 @Preview
 fun App() {
     MaterialTheme {
+        val greeting = koinInject<Greeting>()
+        val repository = koinInject<RadioRepository>()
+        val stations = remember { repository.getStations() }
+
         var showContent by remember { mutableStateOf(false) }
         Column(
             modifier = Modifier
@@ -35,13 +41,15 @@ fun App() {
                 Text("Click me!")
             }
             AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
+                    Text("Compose: ${greeting.greet()}")
+                    stations.forEach { station ->
+                        Text(station.name)
+                    }
                 }
             }
         }

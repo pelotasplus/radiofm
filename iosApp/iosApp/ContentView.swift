@@ -3,6 +3,9 @@ import SharedLogic
 
 struct ContentView: View {
     @State private var showContent = false
+
+    private let stations: [RadioStation] = KoinIosKt.radioRepository().getStations()
+
     var body: some View {
         VStack {
             Button("Click me!") {
@@ -17,6 +20,9 @@ struct ContentView: View {
                         .font(.system(size: 200))
                         .foregroundColor(.accentColor)
                     Text("SwiftUI: \(Greeting().greet())")
+                    ForEach(stations, id: \.name) { station in
+                        Text(station.name)
+                    }
                 }
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
