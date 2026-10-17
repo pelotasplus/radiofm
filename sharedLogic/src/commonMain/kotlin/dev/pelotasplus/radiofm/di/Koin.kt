@@ -5,7 +5,7 @@ import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.includes
 import org.koin.plugin.module.dsl.startKoin
 
-@KoinApplication(modules = [AppModule::class])
+@KoinApplication(modules = [AppModule::class, PlatformModule::class])
 object KoinApp
 
 fun initKoin(config: KoinAppDeclaration? = null) {
