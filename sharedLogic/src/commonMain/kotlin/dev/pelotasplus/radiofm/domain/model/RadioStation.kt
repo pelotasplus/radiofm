@@ -5,10 +5,10 @@ data class RadioStation(
     val slug: String,
     val name: String,
     val streamUrl: String,
-//    val logoUrl: String,
+    val logoUrl: String,
+    val top: Boolean,
 //    val novelty: Boolean,
 //    val sponsored: Boolean,
 //    val premium: Boolean,
-//    val top: Boolean,
 //    val contentType: String // MUSIC
 )

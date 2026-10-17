@@ -1,5 +1,6 @@
 package dev.pelotasplus.radiofm.data.remote
 
+import dev.pelotasplus.radiofm.data.remote.model.PlaylistRemote
 import dev.pelotasplus.radiofm.data.remote.model.RadioStationRemote
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -15,6 +16,11 @@ class OpenFmApiService(
             .body<Map<String, RadioStationRemote>>()
             .values
             .toList()
+    }
+
+    suspend fun getRadioStations(): PlaylistRemote {
+        return httpClient.get("https://open.fm/api/radio/category/stacje-radiowe")
+            .body<PlaylistRemote>()
     }
 
 }
