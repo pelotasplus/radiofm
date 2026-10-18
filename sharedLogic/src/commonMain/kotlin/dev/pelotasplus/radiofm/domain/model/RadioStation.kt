@@ -1,5 +1,8 @@
 package dev.pelotasplus.radiofm.domain.model
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 data class RadioStation(
     val id: Long,
     val slug: String,
